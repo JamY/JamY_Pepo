@@ -4,4 +4,3 @@
 $ git config --global user.name "your name"
 $ git config --global user.email "your_email@youremail.com"
 创建本地仓库 git init  
-上传所有代码到本地仓库 git add 
