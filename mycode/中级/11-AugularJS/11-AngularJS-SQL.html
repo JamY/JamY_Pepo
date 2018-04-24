@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app"  style="padding: 10px">
+	<div ng-controller="MyCtrl">
+		<div class="button" ng-click="selectUser()">查询</div><br>
+		<div class="button" ng-click="addUser()">添加</div><input type="text" class="input" ng-model="name">
+	</div>
+<script src="js/angular.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/foundation.min.css">
+<script type="text/javascript">
+	angular.module("app", [])
+	.controller("MyCtrl", function($scope, $http){
+		$scope.name="";
+		$scope.selectUser = function(){
+			$http.get("http://localhost/day08/user_select.php").then(function(response){
+				console.log(response);
+			});
+		};
+		$scope.addUser = function(){
+			// $http.get("http://localhost/day08/user_add.php?name="+$scope.name).then(function(response){
+			// 	console.log(response);
+			// });
+		};	
+	})
+</script>
+</body>
+</html>

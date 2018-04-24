@@ -1,0 +1,42 @@
+<!--
+	required属性可以应用在大多数输入元素上，在提交时，如果元素中内容为空白，则不允许提交，同时在浏览器中显示信息提示文字。
+-->
+<!--
+	labels属性:在HTML5中，为所有可使用标签的表单元素、button、select元素等，定义一个labels属性，(txtName.labels)
+	属性值为一个NodeList对象，代表该元素所绑定的标签元素所构成的集合。
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		function Validate(){
+			var txtName = document.getElementById("txt_name");
+			var button = document.getElementById("btnValidate");
+			var form = document.getElementById("testform");
+			if(txtName.value.trim() == ""){
+				var label = document.createElement("label");
+				label.setAttribute("for" ,"txt_name");
+				form.insertBefore(label ,button);//在 form 表单里放 label元素 位于 button 的前面
+				txtName.labels[1].innerHTML = "请输入名字";
+				txtName.labels[1].setAttribute("style" ,"font-size:15px;color:red;");
+				// 等价
+				// label.innerHTML = "请输入名字";
+				// label.setAttribute("style" ,"font-size:15px;color:red;");
+			}
+		}
+	</script>
+	<form action="http://localhost:8080/HelloJSP01/test01.jsp">
+		<input type="text" name="" required>		
+		<button type="submit">提交</button>
+	</form>
+	<form id="testform">
+		<label id="label" for="txt_name">姓名:</label>
+		<input id="txt_name">
+		<input type="button" id="btnValidate" value="验证" onclick="Validate()">
+	</form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!-- 文本框的pattern属性-->
+<!-- 文本框的SelectionDirection属性，可用于input元素与textarea元素-->
+<!-- 用户在input元素或textarea元素中用鼠标选取部分文字时，可以使用该属性来获取选取方向。当用户正向选取文字时，
+该属性值为"forward"，反向选取值为“backward”，且当用户没有选取任何文字时，该属性值为"forward"。 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<form action="http://localhost:8080/HelloJSP01/test01.jsp">
+		请输入内容
+		<input type="text" name="part" pattern="[A-Z]{3}">
+		<input type="submit">
+	</form>
+
+	<script type="text/javascript">
+		function AD(){
+			var control = document.forms[1]['text'];//等价于document.forms.text
+			var Direction = control.selectionDirection;
+			alert(Direction);
+		}
+	</script>
+	<form>
+		<input type="test" name="text"><!-- 等价于 id="text" -->
+		<input type="button" value="点击我" onclick="AD()">
+	</form>
+	<!-- document.forms[0]在HTML页面中有一个form表单或者多个form表单的时候，都是返回一个NodeList类型的form数组
+		 document.forms[0].usernames,这里的usernames可以是id的值，也可以是name的值，在这里这两个属性是等价的。而且，不会区分组件是文本框，是单选框，还是复选框。 -->
+</body>
+</html>

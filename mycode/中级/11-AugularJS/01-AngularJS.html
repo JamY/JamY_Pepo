@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head lang="en">
+	<title></title>
+	<meta charset="utf-8">
+	<script src="js/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/foundation.min.css">
+</head>
+<body style="padding: 10px">
+	<fieldset>
+		<legend>第一个例子</legend>
+		<b>计算</b>
+		<br>
+		<br>
+		<table>
+			<tr><td>单价：(美元)</td><td>数量：</td></tr>
+			<tr>
+				<td><input type="number" ng-model="qty" required="" name=""></td>
+				<td><input type="number" ng-model="cost" required="" name=""></td>
+			</tr>
+		</table>
+		<b>金额：</b> {{qty * cost | currency}}
+	</fieldset>
+
+	<fieldset>
+		<b>改变model来控制dom:</b>
+		<br>
+		<br>
+		<legend>第二个例子：</legend>
+		<input type="text" ng-model="data.msg">
+		<div class="{{data.msg}}">我是一个{{data.msg}}</div>
+	</fieldset>
+</body>
+</html>

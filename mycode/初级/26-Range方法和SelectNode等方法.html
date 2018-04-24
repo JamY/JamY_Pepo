@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		function deleteRangeContent(onlyContent){
+			var div = document.getElementById("div");
+			var rangObj = document.createRange();
+			if(onlyContent){
+				rangObj.selectNodeContents(div);// 设置该范围的边界点，使它包含指定节点的子孙节点，但不包含指定的节点本身。
+				rangObj.deleteContents();
+			}else{
+				rangObj.selectNode(div); //设置该范围的边界点，使它包含指定的节点和它的所有子孙节点。
+				rangObj.deleteContents();// 删除当前 Range 对象表示的文档区域。
+			}
+		}
+	</script>
+	<div id="div" style="background-color: #e0a0b0; width: 300px; height: 50px;">
+		元素中的内容
+	</div>
+	<button onclick="deleteRangeContent(true)">删除内容</button>
+	<button onclick="deleteRangeContent(false)">删除元素</button>
+
+	<script type="text/javascript">
+		function deleteChar(){
+			var div = document.getElementById("myDiv");
+			var textNode = div.firstChild;
+			var rangObj = document.createRange();
+			rangObj.setStart(textNode, 1);
+			rangObj.setEnd(textNode, 4);
+			rangObj.deleteContents();
+		}	
+	</script>
+	<div id="myDiv" style="color: red">
+		abcdefgh这段文字是用来删除的
+	</div>
+	<button onclick="deleteChar()">删除文字</button>
+
+	<script type="text/javascript">
+		function deleteRow(){
+			var table = document.getElementById("myTable");
+			if(table.rows.length > 0){
+				var row = table.rows[0];
+				var rangObj = document.createRange();
+				rangObj.setStartBefore(row);
+				rangObj.setEndAfter(row);
+				rangObj.deleteContents();
+			}
+		}
+	</script>
+	<table id="myTable">
+		<tr>
+			<td>内容1</td>
+			<td>内容2</td>
+		</tr>
+		<tr>
+			<td>内容1</td>
+			<td>内容2</td>
+		</tr>
+	</table>
+	<button onclick="deleteRow()">删除第一行</button>
+	<!-- 
+	setStartBefore()	把该范围的开始点设置为紧邻指定节点之前。
+	setEndAfter()	把该范围的结束点设置为紧邻指定节点的节点之后。
+	setStartAfter()	把该范围的开始点设置为紧邻指定节点的节点之后。
+	setEndBefore()	把该范围的结束点设置为紧邻指定节点之前。
+	 -->
+</body>
+</html>

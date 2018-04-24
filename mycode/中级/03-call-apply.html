@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	.
+	<script type="text/javascript">
+	var foo = {  
+    	name: 'myFoo',  
+   		showName: function() {  
+        	alert(this.name);  
+    	}  
+	};  
+	var myObj = {  
+    	name: 'Hello'  
+	};  
+	// console.log(foo.showName);
+	foo.showName.call(myObj);
+
+
+	//实现继承
+	function animal(name,food) {
+		var a = "ok";
+		this.name = name,
+		this.food = food,
+		this.say = function() {
+			console.log(name +" likes " + this.food + '.');
+		}
+	}
+
+	function rabbit(name,food) {
+		// this.an = animal; //第二种继续方式
+		// this.an(name,food);
+	   animal.call(this,name,food);
+
+	}
+
+	var Judy = new rabbit('Judy','carrot');
+
+	Judy.say();// >>> Judy likes carrot.
+	// console.log(Judy.a);不能访问私有属性
+
+	var list1 = [0,1,2];
+	var list2 = [3,4,5];
+	[].push.apply(list1,list2);
+	// [].push.call(list1, 3, 4, 5);//第二种方法
+	console.log(list1);// >>> [0,1,2,3,4,5]
+	console.log(list2);
+	</script>
+</head>
+<!-- call方法：调用一个对象的一个方法，以另一个对象替换当前对象。传的参数是列表 -->
+<!-- apply方法的意思和call差不多，唯一的区别就是传递的参数是个数组。 -->
+<body>
+
+</body>
+</html>

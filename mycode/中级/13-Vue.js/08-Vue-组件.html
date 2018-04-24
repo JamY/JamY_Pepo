@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+	<my-component></my-component>
+	<my-component1></my-component1>
+	<table>
+	  <tr is="my-row"></tr>
+	</table>
+	<simple-counter></simple-counter>
+	<simple-counter></simple-counter>
+	<simple-counter></simple-counter><br>
+	<my-component2 message="hello!" my-message="HELLO!"></my-component2><br>
+	<!-- 动态prop -->
+	<input type="text" v-model="parentMsg"><br>
+	<my-component2 :my-message="parentMsg"></my-component2><br>
+
+	<todo-item v-bind:todo="todo"></todo-item>
+	<!-- 字面量语法 vs 动态语法 -->
+	<!-- 传递了一个字符串 "1" -->
+	<my-component2 some-prop="1"></my-component2>
+	<!-- 传递真正的数值 -->
+	<my-component2 v-bind:some-prop="1"></my-component2>
+</div>
+
+<script type="text/javascript">
+	// 全局注册
+	// 确保在初始化根实例之前注册组件
+	Vue.component('my-component', {
+		template: '<div>A custiom component!</div>'
+	})
+
+	Vue.component('simple-counter', {
+	  template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+	  // data必须是函数
+	  // 但是我们却给每个组件实例返回了同一个对象的引用
+	  data: function () {
+	    return { counter: 0 }
+	  }
+	})
+
+	// 使用prop传递数据
+	// my-component2 是父组件，span是子组件
+	Vue.component('my-component2', {
+	  // 声明 props
+	  props: ['message','myMessage'],
+	  // 就像 data 一样，prop 也可以在模板中使用
+	  // 同样也可以在 vm 实例中通过 this.message 来使用
+	  template: '<span>{{ message }} {{myMessage}}</span>'
+	  // 驼峰式命名 转为 短横线分隔式命名
+	})
+
+	Vue.component('todo-item', {
+		props: ['todo'],
+		template: '<span>{{todo.text}} {{todo.isComplete}}</span>'
+	})
+
+	var Child = {
+		template: '<div>This is new component!</div>'
+	}
+	var vm = new Vue({
+		el: '#example',
+		// 局部注册
+		components: {
+			'my-component1': Child,
+			'my-row': Child
+		},
+		data: {
+			parentMsg: 'Message from parent',
+			todo: {
+				text: 'Learn Vue',
+	 			isComplete: 'false'
+			}
+		}
+	})
+	// 可替换/合并 现有的特性 
+	//比如 来自组件自身的模板class属性 来自父组件class属性
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+	
+</head>
+<body>
+
+<label for="tag">选择一个编程语言：</label>
+<input id="tag"/>
+ 
+<script>
+$( "#tag" ).autocomplete({
+  source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
+});
+</script>
+
+</body>
+</html>

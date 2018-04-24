@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		function btn(){
+			// for(var i = 0; i <= 100; i++){ //js是单线程，先执行for循环(i = 100)再执行函数
+			// 	setTimeOut(function (){
+			// 		updateprogress(i);
+			// 	}, 2000)
+			// }
+			var i = 0;
+			function thead_one(){
+				if(i <= 100){
+					i++;
+					updateprogress(i);
+				}
+			}
+			setInterval(thead_one ,100);
+		}
+		function updateprogress(newValue){
+			var progressBar = document.getElementById("p");
+			progressBar.value = newValue;
+			document.getElementByTagName("span")[0].textContent = newValue;
+
+		}
+	</script>
+	<section>
+		<h2>pregress元素使用</h2>
+		<p>完成的百分比<progress id="p" value="" max="100"><span>0</span>%</progress></p>
+		<input type="button" onclick="btn()" value="点击" name="">
+	</section>
+
+	<!-- meter 规定范围内数值量 -->
+	<meter value="40" min="0" max="100" low="10" high="90" optimum="80"></meter><!-- optimun 规定度量的优化值。 -->
+	<meter value="0.6">60%</meter>
+</body>
+</html>

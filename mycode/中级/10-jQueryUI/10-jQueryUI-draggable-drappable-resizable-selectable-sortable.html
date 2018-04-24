@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+	<style type="text/css">
+		#draggable{ width: 150px; height: 150px; padding: 0.5em; }
+
+		#droppable{ width: 150px; height: 150px; padding: 0.5em; margin: 10px; }		
+
+		#resizable { width: 150px; height: 150px; padding: 0.5em; }
+		#resizable h3 { text-align: center; margin: 0; }
+
+		#feedback { font-size: 1.4em; }
+		#selectable .ui-selecting { background: #FECA40; }
+		#selectable .ui-selected {background: #F39814; color: white; }
+		#selectable { list-style-type: none; margin: 0; padding: 0; width: 30%; }
+		#selectable li {margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px;}
+
+		#sortable { list-style-type: none; margin: 0; padding: 0; width: 30%; }
+ 		#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  		#sortable li span { position: absolute; margin-left: -1.3em; }
+
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			$("#draggable").draggable();		
+		});
+
+		$(function() {
+			$("#droppable").droppable({
+				drop: function(even, ui){
+					$(this)
+					.addClass("ui-state-highlight")
+					.find("p")
+					.html("Dropped!");
+				}
+			});
+		});
+
+		$(function() {
+   			$( "#resizable" ).resizable();
+ 		});
+
+ 		$(function(){
+ 			$("#selectable").selectable();
+ 		});
+
+ 		$(function(){
+ 			$("#sortable").sortable();
+ 			$("#sortable").disableSelection();
+ 		});
+
+
+	</script>
+</head>
+<body>
+<div id="draggable" class="ui-widget-content"><p>请拖动我!</p></div>
+<div id="droppable" class="ui-widget-header"><p>请放置在这里！</p></div>
+
+<div id="resizable" class="ui-widget-content">
+  <h3 class="ui-widget-header">缩放（Resizable）</h3>
+</div>
+
+
+<ol id="selectable">
+  <li class="ui-widget-content">Item 1</li>
+  <li class="ui-widget-content">Item 2</li>
+  <li class="ui-widget-content">Item 3</li>
+  <li class="ui-widget-content">Item 4</li>
+  <li class="ui-widget-content">Item 5</li>
+  <li class="ui-widget-content">Item 6</li>
+  <li class="ui-widget-content">Item 7</li>
+</ol>
+
+
+
+<ul id="sortable">
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+  <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
+</ul>
+
+</body>
+</html>

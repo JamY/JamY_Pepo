@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<h4>{{myUrl}}</h4>
+	<h4>{{myWelcome}}</h4>
+	<h4>{{myHeader}}</h4>
+	<h4>{{theTime}}</h4>
+	<p>255 的16进制是:</p>
+	<h1>{{hex}}</h1>
+	<p>自定义服务，用于转换16进制数：</p>
+
+	<script src="js/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope, $location, $http, $timeout, $interval, hexafy) {
+		    $scope.myUrl = $location.absUrl();
+
+		    // $http.get("http://www.runoob.com/try/demo_source/welcome.htm").then(function (response) {
+		    //     $scope.myWelcome = response.data;
+		    // });
+
+		    $scope.myHeader = "Hello World!";
+		    $timeout(function () {
+		        $scope.myHeader = "How are you today?";
+		    }, 2000);
+
+		    $scope.theTime = new Date().toLocaleTimeString();
+		    $interval(function () {
+		        $scope.theTime = new Date().toLocaleTimeString();
+		    }, 1000);
+
+		    $scope.hex = hexafy.myFunc(255);
+		});
+
+		/*创建自定义服务*/
+		app.service('hexafy', function() {
+			this.myFunc = function (x) {
+		        return x.toString(16);
+		    }
+		});
+	</script>
+</body>
+</html>
+<!-- 
+$location 服务，它可以返回当前页面的 URL 地址 
+$http 服务向服务器发送请求，应用响应服务器传送过来的数据
+$timeout 服务对应了 JS window.setTimeout 函数。
+$interval 服务对应了 JS window.setInterval 函数。
+-->
+<!-- 
+$http 是 AngularJS 中的一个核心服务，用于读取远程服务器的数据。
+// 简单的 GET 请求，可以改为 POST
+$http({
+    method: 'GET',
+    url: '/someUrl'
+}).then(function successCallback(response) {
+        // 请求成功执行代码
+    }, function errorCallback(response) {
+        // 请求失败执行代码
+});
+$http.get('/someUrl', config).then(successCallback, errorCallback);
+$http.post('/someUrl', data, config).then(successCallback, errorCallback);
+ -->

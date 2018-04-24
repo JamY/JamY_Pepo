@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		function moveButton(){
+			var btn = document.getElementById("button");
+			var selection = document.getSelection();
+			if(selection.rangeCount > 0){
+				var range = selection.getRangeAt(0);
+				range.insertNode(btn);
+			}
+		}
+	</script>
+	<div onmouseup="moveButton()" style="width: 400px;background-color: bisque">
+		这里是我随便写的一些文字这里是我随便写的一些文字这里是我随便写的一些文字
+	</div>
+	<button id="button">按钮</button>
+
+	<script type="text/javascript">
+		function testPlace(){
+			var boldText = document.getElementById("boldTest");
+			var boldRange = document.createRange();
+			boldRange.selectNodeContents(boldText.firstChild);
+			var selection = document.getSelection();
+			if(selection.rangeCount > 0){
+				var selRange = selection.getRangeAt(0);
+				if(selRange.compareBoundaryPoints(Range.START_TO_END, boldRange) <= 0){
+					alert("选取的文字在粗体前面");
+				}else{
+					if(selRange.compareBoundaryPoints(Range.END_TO_START, boldRange) >= 0){
+						alert("选择的文字在粗体后面");
+					}
+				}
+			}
+		}
+	</script>
+	<br/>
+	这是一段文字，我也不<b id="boldTest">知道</b>写什么，随便把。
+	<br/>
+	<button onclick="testPlace()">位置比较</button>
+	<!-- 
+		compareBoundaryPoints(how,sourceRange) 方法比较两个范围的位置。
+		how	声明如何执行比较操作（即比较哪些边界点）。它的合法值是 Range 接口定义的常量。
+		sourceRange	要与当前范围进行比较的范围。
+		返回值
+		如果当前范围的指定边界点位于 sourceRange 指定的边界点之前，则返回 -1。如果指定的两个边界点相同，则返回 0。如果当前范围的边界点位于 sourceRange 指定的边界点之后，则返回 1。
+
+		Range.START_TO_START - 比较两个 Range 节点的开始点
+		Range.END_TO_END - 比较两个 Range 节点的结束点
+		Range.START_TO_END - 用 sourceRange 的开始点与当前范围的结束点比较
+		Range.END_TO_START - 用 sourceRange 的结束点与当前范围的开始点比较
+	 -->
+	 <script type="text/javascript">
+	 	var rangeObj = document.createRange();
+	 	function selectRangeContents(){
+	 		var div = document.getElementById("div");
+		 	rangeObj.selectNode(div);
+	 	}
+	 	function unselect(){
+	 		rangeObj.collapse(true);
+	 	}
+	 	function showRange(){
+	 		alert(rangeObj.toString());
+	 	}
+	 	
+	 </script>
+
+	 <div id="div" style="background-color: bisque; width: 300px; height: 50px;">元素内容</div>
+	 <button onclick="selectRangeContents()">选择元素</button>
+	 <button onclick="unselect()">取消元素</button>
+	 <button onclick="showRange()">显示Range内容</button>
+	 <!-- 
+	 	collapse() 方法是范围的边界点重合
+		参数
+		如果把参数 toStart 设置为 true，该方法将把范围的结束点设置为与开始点相同的值。否则，它将把范围的开始点设置为与结束点相同的值 
+		
+		detach() 方法释放一个 Range 对象。
+	 	通知实现不再使用当前的范围，可以停止跟踪。
+	-->
+</body>
+</html>

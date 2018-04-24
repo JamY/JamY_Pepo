@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+	<style type="text/css">
+	/* 在每个 ui-menu 元素的内容之后插入内容。 */
+		.ui-menu:after{
+			content: "ABC";
+			display: block;
+			clear: both;
+			visibility: hidden;
+			line-height: 0;
+			height: 0;
+		}
+		.ui-menu .ui-menu-item{
+			display: inline-block;
+			float: left;
+			margin: 0;
+			padding: 10;
+			width: auto;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#menu").menu({position: {at: "left bottom"}});
+		});
+	</script>
+</head>
+<body>
+	<ul id="menu">
+		<li>
+			<a href="#">JAVA</a>
+			<ul>
+				<li><a href="#">JAVA SE</a></li>
+				<li><a href="#">JAVA EE</a></li>
+				<li><a href="#">JAVA ME</a></li>
+			</ul>
+		</li>
+		<li>C</li>
+		<li>C++</li>
+		<li>PHP</li>
+	</ul>
+</body>
+</html>

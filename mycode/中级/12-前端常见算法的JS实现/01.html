@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		// 1.冒泡排序
+		var arr = [47,78,25,45,74,14,69];
+		function bubbleSort(arr){
+			for(var i = 1; i<arr.length; i++){
+				for(var j = 0; j<arr.length-i;j++){
+					if(arr[j] > arr[j+1]){
+						var temp = 0;
+						temp = arr[j];
+						arr[j] = arr[j+1];
+						arr[j+1] = temp;
+					}
+				}
+			}
+			window.alert(arr.join());
+		}
+		// bubbleSort(arr);
+		function quickSort(arr,l,r){
+		  if(l < r){
+		    var i = l, j = r, x = arr[i];
+		    while(i<j){
+		      while(i<j && arr[j]>x)
+		        j--;
+		      
+		      if(i<j)
+		        //这里用i++，被换过来的必然比x小，赋值后直接让i自加，不用再比较，可以提高效率
+		        arr[i++] = arr[j];
+		      
+		      while(i<j && arr[i]<x)
+		        i++;
+		      
+		      if(i<j)
+		        //这里用j--，被换过来的必然比x大，赋值后直接让j自减，不用再比较，可以提高效率
+		        arr[j--] = arr[i];
+		    }
+		    arr[i] = x;
+		    
+		    quickSort(arr, l, i-1);
+		    quickSort(arr, i+1, r);
+		  }
+		}
+		quickSort(arr, 0, 6);
+		alert(arr.join() + " " + arr.length);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

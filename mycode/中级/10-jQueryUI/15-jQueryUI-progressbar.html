@@ -1,0 +1,32 @@
+<!-- Ctrl+D：选择单词，重复可增加选择下一个相同的单词 -->
+<!-- Ctrl+Shift+M：选中当前括号内容，重复可选着括号本身 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui.min.css">
+</head>
+<script type="text/javascript">
+	var pg;
+	var max = 100;
+	var current = 0;
+	$(document).ready(function(){
+		pg = $("#progressbar");
+		pg.progressbar({max: 100});
+		setInterval(changepg, 100);
+	});
+	function changepg(){
+		current++;
+		if(current>=100){
+			current=0;
+		}
+		pg.progressbar(current);
+	}
+</script>
+<body>
+	<div id="progressbar"></div>
+</body>
+</html>

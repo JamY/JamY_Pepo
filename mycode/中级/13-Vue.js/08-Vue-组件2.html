@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="event">
+	<!-- 使用 v-on 绑定自定义事件 -->
+  <p>{{ total }}</p>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <button-counter v-on:increment="incrementTotal"></button-counter><br>
+	
+	<!-- 给组件绑定原生事件 -->
+  <p v-for="msg in messages">{{msg}}</p>
+  <button-message v-on:message="handleMessage" v-on:click.native="componentClick"></button-message>
+</div>
+<script type="text/javascript">
+Vue.component('button-counter', {
+  template: '<button v-on:click="incrementCounter">{{ counter }}</button>',// 绑定事件
+  data: function () {
+    return {
+      counter: 0
+    }
+  },
+  methods: {
+    incrementCounter: function () {
+      this.counter += 1
+      this.$emit('increment') // 触发事件
+    }
+  },
+})
+
+Vue.component('button-message', {
+	template: `<div>
+    <input type="text" v-model="message" />
+    <button v-on:click="handleSendMessage">Send</button>
+  </div>`, // 使用反单引号` 可以解决换行问题
+	data: function(){
+		return {
+			message: 'test message'
+		}
+	},
+	methods: {
+		handleSendMessage: function(){
+			this.$emit('message', { message:this.message })
+		}
+	}
+})
+
+new Vue({
+  el: '#event',
+  data: {
+    total: 0,
+    messages: []
+  },
+  methods: {
+    incrementTotal: function () {
+      this.total += 1
+    },
+    handleMessage: function(payload){
+    	this.messages.push(payload.message)
+    },
+    componentClick: function(){
+    	console.log('组件监听了click事件')
+    }
+  }
+})
+</script>
+</body>
+</html>
+<!-- 
+$on(eventName) 监听事件
+$emit(eventName, optionalPayload) 触发事件
+.native
+ -->

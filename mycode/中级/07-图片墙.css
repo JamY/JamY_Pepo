@@ -1,0 +1,134 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #eeeeee;
+}
+
+.container{
+    width: 960px;
+    height: 450px;
+    margin: 60px auto;
+    position: relative;
+}
+
+.pic{
+    width: 160px;
+}
+
+.container img:hover{
+    box-shadow: 15px 15px 20px rgba(50,50,50,0.4);
+    transform:rotate(0deg) scale(1.20);
+    -webkit-transform:rotate(0deg) scale(1.20);/*向元素应用2D或3D转换*/
+    z-index: 2;/*z-index 属性设置元素的堆叠顺序。Z-index 仅能在定位元素上奏效（例如 position:absolute;）*/
+	/*
+	box-shadow: h-shadow v-shadow blur spread color inset;
+	值	描述	测试
+	h-shadow	必需。水平阴影的位置。允许负值。	测试
+	v-shadow	必需。垂直阴影的位置。允许负值。	测试
+	blur	可选。模糊距离。	测试
+	spread	可选。阴影的尺寸。	测试
+	color	可选。阴影的颜色。请参阅 CSS 颜色值。	测试
+	inset	可选。将外部阴影 (outset) 改为内部阴影。
+	*/
+	/*
+	transform: none|transform-functions;
+	*/
+}
+
+.container img{
+    padding: 10px 10px 15px;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 3px rgba(50,50,50,0.4);
+    -webkit-transition: all 0.5s ease-in;/* Safari 和 Chrome */
+    -moz-transition: all 0.5s ease-in;/* Firefox */
+    -ms-transition: all 0.5s ease-in;/* 兼容 IE 9 */
+    -o-transition: all 0.5s ease-in;/* Opera */
+    transition: all 0.5s ease-in;
+    position: absolute;
+    z-index: 1;
+	/*
+	transition 属性是一个简写属性，用于设置四个过渡属性：
+	transition-property	规定设置过渡效果的 CSS 属性的名称。/all	所有属性都将获得过渡效果
+	transition-duration	规定完成过渡效果需要多少秒或毫秒。
+	transition-timing-function	规定速度效果的速度曲线。/ease-in	规定以慢速开始的过渡效果
+	transition-delay	定义过渡效果何时开始。
+	*/
+    /*
+    position 属性
+    absolute    
+    生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。
+    元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+    fixed   
+    生成绝对定位的元素，相对于浏览器窗口进行定位。
+    元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+    relative    
+    生成相对定位的元素，相对于其正常位置进行定位。
+    因此，"left:20" 会向元素的 LEFT 位置添加 20 像素。
+    static  默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）。
+    inherit 规定应该从父元素继承 position 属性的值。
+    */
+}
+
+.pic1{
+    left: 400px;
+    top: 0;
+    transform:rotate(-5deg);
+    -webkit-transform:rotate(-5deg);
+}
+
+.pic2{
+    left: 200px;
+    top: 0;
+    transform:rotate(-20deg);
+    -webkit-transform:rotate(-20deg);
+}
+.pic3{
+    bottom: 100px;
+    right: 100px;
+    transform:rotate(5deg);
+    -webkit-transform:rotate(5deg);
+}
+
+.pic4{
+    bottom0: 400px;
+    left: 300;
+    transform:rotate(-10deg);
+    -webkit-transform:rotate(-10deg);
+}
+
+.pic5{
+    bottom: 0px;
+    top: 0;
+    transform:rotate(-10deg);
+    -webkit-transform:rotate(-10deg);
+}
+.pic6{
+    left: 0px;
+    top: 0;
+    transform:rotate(10deg);
+    -webkit-transform:rotate(10deg);
+}
+
+.pic7{
+    left: 850px;
+    top: 0;
+    transform:rotate(20deg);
+    -webkit-transform:rotate(20deg);
+}
+.pic8{
+    bottom: -20px;
+    top: 650px;
+    transform:rotate(5deg);
+    -webkit-transform:rotate(5deg);
+}
+.pic9{
+    left: 550px;
+    top: 90;
+    transform:rotate(15deg);
+    -webkit-transform:rotate(15deg);
+}

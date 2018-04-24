@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<script type="text/javascript">
+	var imgContainer, msgDiv;
+	window.onload = function(){
+		imgContainer = document.getElementById("imgContainer");
+		msgDiv = document.getElementById("msg");
+		imgContainer.ondragover = function(e){
+			e.preventDefault();
+		}
+		imgContainer.ondrop = function(e){
+			e.preventDefault();
+			var f = e.dataTransfer.files[0];
+			var fileReader = new FileReader();
+			fileReader.readAsDataURL(f);
+			fileReader.onload = function(e){//监听读取数据
+				showObj(e.target);
+				imgContainer.innerHTML = "<img src=\""+fileReader.result+"\">";
+			}
+		}
+	}
+
+	function showObj(obj){
+		var s = "";
+		for(var k in obj){
+			s += k +  ":" + obj[k] + "<br/>";
+		}
+		msgDiv.innerHTML = s;
+	}
+
+</script>
+<style type="text/css">
+	#imgContainer{
+		background-color: #cccccc;
+		width: 500px;
+		height: 500px;
+	}
+</style>
+<body>
+	<div id="imgContainer"></div>
+	<div id="msg"></div>
+</body>
+</html>

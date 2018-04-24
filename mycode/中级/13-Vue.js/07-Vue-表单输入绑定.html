@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+	<!-- 复选框 -->
+	<div id='example-3'>
+	  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+	  <label for="jack">Jack</label>
+	  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+	  <label for="john">John</label>
+	  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+	  <label for="mike">Mike</label>
+	  <br>
+	  <span>Checked names: {{ checkedNames }}</span>
+	</div>
+	<!-- 多选 选择框 -->
+	<select v-model="selected" multiple style="width: 50px;">
+		<option>A</option>
+		<option>B</option>
+		<option>C</option>
+	</select>
+	<br>
+	<span>Selected: {{ selected }}</span><br>
+
+	<!-- 复选框 -->
+	<input type="checkbox" v-model="toggle" true-value="yes"  false-value="no">
+	<span>CheckBox: {{toggle}}</span><br>
+	
+	<!-- 单选按钮 -->
+	<input type="radio" v-model="pick" value="one">
+	<label id="one" for="radio">One</label>
+	<input type="radio" v-model="pick" value="two">
+	<label id="one" for="radio">Two</label>
+	<span>Radio: {{pick}}</span><br>
+
+	<!-- 修饰符 -->
+	<!-- 在“change”时而非“input”时更新 -->
+	<input v-model.lazy="msg">
+	<span>.lazy: {{msg}}</span><br>
+
+	<!-- 自动将用户的输入值转为数值类型 -->
+	<input type="number" v-model.number="age">
+	<span>.number {{age}}</span><br>
+	<!-- 这通常很有用，因为即使在 type="number" 时，HTML 输入元素的值也总会返回字符串。 -->
+
+	<!-- 自动过滤用户输入的首尾空白字符 -->
+	<input type="text" v-model.trim="name">
+	<span>.trim {{name}}</span>
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#example',
+		data: {
+			checkedNames: [],
+			selected: [],
+			toggle: '',
+			pick: '',
+			number: '',
+			msg: '',
+			age: '',
+			name: ''
+		}
+	})
+</script>
+</body>
+</html>
+<!-- 
+.lazy
+.number
+.trim
+ -->

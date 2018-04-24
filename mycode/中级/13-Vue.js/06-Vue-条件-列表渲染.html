@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+	<template v-if="loginType === 'username'">
+	  <label>Username</label>
+	  <input placeholder="Enter your username" key="username-input">
+	</template>
+	<template v-else>
+	  <label>Email</label>
+	  <input placeholder="Enter your email address" key="address-input">
+	</template>
+	<!-- 两个模板使用了相同label,input的元素，key能阻止 -->
+	<button @click="btnClick">Toggle login type</button>
+
+	<h1 v-show="ok">Hello!</h1>
+	<!-- 始终会被渲染并保留在 DOM -->
+	<!-- 简单地切换元素的 CSS 属性 display -->
+
+	<ul>
+	  <li v-for="(item, index) in items" :key="item.id">
+	    {{ parentMessage }} - {{ index }} - {{ item.message }}
+	  </li>
+	</ul>
+	<div v-for="(value, key, index) in object">
+	  {{ index }}. {{ key }}: {{ value }}
+	</div>
+	<li v-for="n in evenNumbers">{{ n }}</li>
+
+	<div>
+	  <span v-for="n in 10">{{ n }} </span>
+	  <template v-for="n in 10">
+	    {{ n }}
+	  </template><!-- template元素不渲染 -->
+	</div>
+
+	<input
+		v-model="newTodoText"
+		v-on:keyup.enter="addNewTodo"
+		placeholder="Add a todo"
+	>
+	<ul>
+	<li
+	  	is="todo-item"
+		v-for="(todo, index) in todos"
+		v-bind:key="todo.id"
+		v-bind:title="todo.title"
+		v-on:remove="todos.splice(index, 1)"
+	></li>
+	</ul>
+</div>
+<script type="text/javascript">
+	Vue.component('todo-item', {
+	  template: '\
+	    <li>\
+	      {{ title }}\
+	      <button v-on:click="$emit(\'remove\')">X</button>\
+	    </li>\
+	  ',
+	  props: ['title']
+	})
+
+	var vm = new Vue({
+		el: '#example',
+		data: {
+			isUsername: true,
+			loginType: 'username',
+			ok: true,
+			parentMessage: 'Parent',
+			items: [
+		      { message: 'Foo' },
+		      { message: 'Bar' }
+		    ],
+		    object: {
+		      firstName: 'John',
+		      lastName: 'Doe',
+		      age: 30
+		    },
+		    numbers: [ 1, 2, 3, 4, 5 ],
+
+		    newTodoText: '',
+		    todos: [
+		      {
+		        id: 1,
+		        title: 'Do the dishes',
+		      },
+		      {
+		        id: 2,
+		        title: 'Take out the trash',
+		      },
+		      {
+		        id: 3,
+		        title: 'Mow the lawn'
+		      }
+		    ],
+		    nextTodoId: 4
+		},
+		methods: {
+			btnClick: function(){
+				if(this.isUsername){
+					this.isUsername = !this.isUsername;
+					this.loginType = 'address';
+				}else{
+					this.isUsername = !this.isUsername;
+					this.loginType = 'username';
+				}						
+			},
+			addNewTodo: function () {
+		      this.todos.push({
+		        id: this.nextTodoId++,
+		        title: this.newTodoText
+		      })
+		      this.newTodoText = ''
+		    }
+		},
+		computed: {
+		  evenNumbers: function () {
+		    return this.numbers.filter(function (number) {
+		      return number % 2 === 0
+		    })
+		  }
+		}
+	})
+	// vm.items[1] = { message: 'Ccc'} // 不是响应性的
+	// vm.items.length = 1 // 不是响应性的
+	Vue.set(vm.items, 0, { message: 'Ccc' })//$set
+	vm.items.splice(1)//splice(newLength)
+// Vue 不能检测以下变动的数组：
+// 当你利用索引直接设置一个项时，例如：vm.items[indexOfItem] = newValue
+// 当你修改数组的长度时，例如：vm.items.length = newLength
+
+	// vm.a 现在是响应式的
+	// vm.b = 2// vm.b 不是响应式的
+	Vue.set(vm.object, 'sex', '男')
+// Vue 不能检测对象属性的添加或删除
+	vm.object = Object.assign({}, vm.object, { province: '广东省',city: '中山' })
+// Object.assign()方法从一个或多个源对象复制到目标对象。它将返回目标对象。
+
+// filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+</script>
+</body>
+</html>
+<!-- v-if v-for
+Vue.set(array, indexOfItem, newValue)/Vue.$set,
+Vue.set(object, key, value)/Vue.$set
+Object.assign() 
+array.filter()
+-->

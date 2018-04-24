@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		(function(){
+			var n =  "ime";
+			function People(name){
+				this._name = name;
+			}
+			People.prototype.say = function(){
+				alert("peo-hello" + this._name + " " + n);
+			}
+			window.People = People;/*公开接口*/
+		}());
+
+		(function(){
+			function Student(name){
+				this._name = name;
+			}
+			Student.prototype = new People();
+			var superSsay = Student.prototype.say;
+			Student.prototype.say = function(){
+				superSsay.call(this);
+				alert("stu-hello" + this._name);
+			}
+			window.Student = Student;
+		}());
+
+		var s = new Student("iwen");
+		s.say()
+
+		(function(){
+			var n = "ime";
+			function Person(name){
+				var _this = {}
+				_this._name = name;
+				_this.sayHello = function(){
+					alert("PHello" + _this._name + n);
+				}
+				return _this;
+				window.Pserson = Person;
+			}
+		}());
+
+		function Teacher(name){
+			var _this = Person(name);
+			var superSsay = _this.sayHello;
+			_this.sayHello = function(){
+				superSsay.call(_this);
+				alert("Thello" + _this._name);
+			}
+		}		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

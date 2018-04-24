@@ -1,0 +1,31 @@
+<!DOCTYPE html >
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<script src="js/angular.min.js"></script>
+</head>
+<body>
+
+<div>
+	<h1>姓氏为 {{lastname}} {{names[0]}}家族成员:</h1><!-- $scope不在作用范围 -->
+	<ul ng-controller="myCtrl">
+	    <li ng-repeat="x in names">{{x}} {{lastname}}</li>
+	</ul>
+</div>
+
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope, $rootScope) {/*myCtrl 函数是一个 JavaScript 函数*/
+	    $scope.names = ["Emil", "Tobias", "Linus"];
+	    $rootScope.lastname = "Refsnes";
+	});
+</script>
+
+</body>
+</html>
+<!-- $scope 应用在 HTML (视图) 和 JavaScript (控制器)之间的纽带。 -->
+<!-- $rootScope 作用在 ng-app 指令包含的所有 HTML 元素中 -->
+<!-- 
+ AngularJS 控制器 控制 AngularJS 应用程序的数据。
+ AngularJS 控制器是常规的 JavaScript 对象。
+ -->

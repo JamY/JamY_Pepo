@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body><!-- 不要将Vue挂载到html或body-mount到普通元素 -->
+<div id="example" style="height: 1000px">
+	<button v-on:click="say">Submit</button>
+	<!-- <button v-on:click="greet('hi')">Greet</button> even不能传入-->
+	<button v-on:click="greet('hi', $event)">Greet</button>
+
+	<!-- 阻止单击事件继续传播 -->
+	<a v-on:click.stop="say">v-on:click.stop</a>
+
+	<!-- 提交事件不再重载页面 -->
+	<form v-on:submit.prevent="say"><input type="submit" value="v-on:submit.prevent"></form>
+
+	<!-- 修饰符可以串联 -->
+	<a v-on:click.stop.prevent="say">v-on:click.stop.prevent</a>
+
+	<!-- 只有修饰符 -->
+	<form v-on:submit.prevent></form>
+
+	<!-- 添加事件监听器时使用事件捕获模式 -->
+	<!-- 即元素自身触发的事件先在此处处理，然后才交由内部元素进行处理 -->
+	<div v-on:click.capture="say">v-on:click.capture</div>
+
+	<!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+	<!-- 即事件不是从内部元素触发的 -->
+	<div v-on:click.self="say">v-on:click.self</div>
+
+	<!-- 点击事件将只会触发一次 -->
+	<a v-on:click.once="say">v-on:click.once</a><br>
+
+	<!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
+	<!-- 而不会等待 `onScroll` 完成  -->
+	<!-- 这其中包含 `event.preventDefault()` 的情况 -->
+	<!-- <div v-on:scroll.passive="say">v-on:scroll.passive</div> scroll事件失效-->
+
+	<!-- 只有在 `keyCode` 是 13 时调用 `vm.ok()` 即回车键 -->
+	<input v-on:keyup.13="say" placeholder="@keyup.13"><br>
+
+	<input v-on:keyup.enter="say" placeholder="@keyup.enter"><br>
+
+	<input @keyup.f1="say" placeholder="@keyup.f1"><br>
+
+	<input @keyup.page-down="say" placeholder="@keyup.page-down"><br>
+
+	<input @keyup.ctrl="say" placeholder="@keyup.ctrl">
+	<!-- @keyup.ctrl 按住 ctrl 的情况下释放其它按键，才能触发 -->
+
+	<!-- .exact 修饰符允许你控制由精确的系统修饰符组合触发的事件 -->
+	<!-- 有且只有 Ctrl 被按下的时候才触发 -->
+	<button @click.ctrl.exact="say">A</button>
+
+	<!-- 没有任何系统修饰符被按下的时候才触发 -->
+	<button @click.exact="say">A</button>
+
+	<div @click.left="say"  @click.right="say"  @click.middle="say" style="width: 100px;height: 100px;background-color: #000000"></div>
+</div>
+
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#example',
+		methods: {
+		  say: function (event) {
+		    console.log(event)	    
+		  },
+		  greet: function (message, event) {
+		        // 现在我们可以访问原生事件对象
+			    if (event) console.log(event.target.tagName)
+			    alert(message)
+		  }
+		}
+	})
+	// 监听这个dom的scroll事件
+	this.addEventListener('scroll', () => {
+	  console.log('ok')
+	}, false)
+
+    // 可以通过全局 config.keyCodes 对象自定义按键修饰符别名：
+	// 可以使用 `v-on:keyup.f1`
+	Vue.config.keyCodes.f1 = 112
+</script>
+</body>
+</html>
+<!-- 
+事件修饰符
+.stop
+.prevent
+.capture
+.self
+.once
+.passive
+按键修饰符
+.enter
+.tab
+.delete (捕获“删除”和“退格”键)
+.esc
+.space
+.up
+.down
+.left
+.right
+.page-down
+系统修饰键
+.ctrl
+.alt
+.shift
+.meta
+
+.exact
+鼠标按键修饰符
+.left
+.right
+.middle
+ -->

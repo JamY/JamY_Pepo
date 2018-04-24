@@ -1,0 +1,31 @@
+<!--
+	标签的control属性
+	在html5中，可以在标签（lable标签）内部放置一个表单元素，并通过该标签的control属性来访问该表单的属性。 
+	placeholder,模糊显示输入提示文字
+	-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script type="text/javascript">
+		function setValue(){
+			var label = document.getElementById("label");
+			var textbox = label.control;
+			textbox.value = "010010";
+		}
+	</script>
+	<form>
+		<label id="label">
+			邮编:
+			<input id="txt_zip" maxlength="6">
+			<small>请输入六位数字</small>
+		</label>
+		<input type="button" value="设置默认值" onclick="setValue()">
+	</form>
+
+	<input type="text" placeholder="请输入用户名">
+</body>
+</html>

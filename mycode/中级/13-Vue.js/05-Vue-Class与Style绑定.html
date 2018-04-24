@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+	<!-- 对象语法 -->
+	<div v-bind:class="{ active: isActive }"></div>
+	<div class="static" v-bind:class="{ active: isActive, 'text-danger': hasError }"></div>
+	<!-- text-danger形式的class必须带'' -->
+	<div v-bind:class="classObject"></div>
+	<div v-bind:class="classObject1"></div>
+	<!-- 数组语法 -->
+	<div v-bind:class="[activeClass, errorClass]"></div>
+	<div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+	<div v-bind:class="[{active: isActive}, errorClass]"></div>
+	<!-- 用在组件上 -->
+	<my-component class="baz boo"></my-component><!-- class不会被覆盖 -->
+
+	<!-- 对象语法 -->
+	<div v-bind:style="styleObject">对象语法</div>
+	<!-- 数组语法 -->
+	<div v-bind:style="[styleObject, overridingStyles]">数组语法</div>
+	<!-- 自动添加前缀 -->
+	<!-- 自动添加浏览器引擎前缀的 CSS 属性，如 -webkit-transform-->
+	<!-- 多重值 -->
+	<!-- 常用于提供多个带前缀的值 -->
+	<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+</div>
+	<script type="text/javascript">
+		//注意确保在初始化根实例之前注册组件
+		Vue.component('my-component', {
+		  template: '<p class="foo bar">Hi</p>'
+		})
+		var vm = new Vue({
+			el: "#example",
+			data: {
+				isActive: true,
+				hasError: true,
+				error: null,
+				classObject: {
+					active1: true,
+					'text-danger1': true
+				},
+				activeClass: 'active2',
+				errorClass: 'text-danger2',
+				styleObject: {
+					color: 'red',
+					fontSize: '13px'
+				},
+				overridingStyles: {}
+			},
+			computed: {
+				classObject1: function(){
+					return {
+						active1: this.isActive && !this.error,
+						'text-danger1': true
+				    }
+				}
+			}
+		})
+		
+	</script>
+</body>
+<!-- 
+CSS 前缀
+主流浏览器引擎前缀:
+-webkit- (谷歌, Safari, 新版Opera浏览器等)
+-moz- (火狐浏览器)
+-o- (旧版Opera浏览器等)
+-ms- (IE浏览器 和 Edge浏览器)
+ -->
+ <!-- v-bind:class v-bind:style -->
+</html>

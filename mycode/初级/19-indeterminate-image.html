@@ -1,0 +1,21 @@
+<!-- 复选框的indeterminate属性
+	对于复选框来说，过去只有选取和与非选取状态，html5中，可以在js中对该元素使用indeterminate属性，以说明复选框“尚未明确选取”状态。 -->
+<!-- image提交按钮的height属性与width属性 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<input type="checkbox" indeterminate id="cd" name="">属性测试
+	<script type="text/javascript">
+		var cd = document.getElementById('cd');
+		cd.indeterminate = true;
+	</script>
+	<form action="test.jsp" method="post">
+		姓名:<input type="text" name="name">
+		<input type="image" src="01.jpg" alt="编辑" width="20" height="20" name="">
+	</form>
+</body>
+</html>

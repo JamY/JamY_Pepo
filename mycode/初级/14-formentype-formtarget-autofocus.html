@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<form>
+		<input type="text" formenctype="text/plain">
+		<input type="text" formenctype="multipart/form-data" autofocus="">
+		<input type="text" formenctype="application/x-www-form-urlencoded">
+		<!--
+			enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码。
+			值	描述
+			application/x-www-form-urlencoded	在发送前编码所有字符（默认）（空格转换为 "+" 加号，特殊符号转换为 ASCII HEX 值）。
+			multipart/form-data	
+			不对字符编码。
+			在使用包含文件上传控件的表单时，必须使用该值。
+			text/plain	空格转换为 "+" 加号，但不对特殊字符编码。
+		-->
+		<input type="submit" name="s1" value="v1" formaction="http://localhost:8080/HelloJSP01/test01.jsp" formmethod="post" formtarget="_top">
+		<!--
+			_blank	在新窗口中打开。
+			_self	默认。在相同的框架中打开。
+			_parent	在父框架集中打开。
+			_top	在整个窗口中打开。
+			framename	在指定的框架中打开。
+		-->
+	</form>
+</body>
+</html>

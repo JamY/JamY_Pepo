@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body style="padding: 10px;" ng-app="app">
+	<div ng-controller="MyCtrl">
+		<h4>{{realname}}</h4>
+		<h4>{{http}}</h4>
+		<h4>{{data.msg}}</h4>
+		<h4>{{uname}}</h4>
+		<input type="" name="" ng-model="test">
+		<h4>{{test}}</h4>
+	</div>
+	<script src="js/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('app', [])
+		.value('realname', 'zhaoliu')
+		.value('realname', 'wangwu')//是可以变值的
+		.constant('http', 'http://www.xxx')
+		.constant('http', 'www.sohu.com')//不可以变值的
+		.factory('Data', function(){
+			return {
+				msg:'你好啊',
+				setMsg:function(){
+					this.msg='我不好';
+				}
+			}
+		})
+		.service('User', function(){
+			this.firstname='上官';
+			this.lastname="飞燕";
+			this.getName=function(){
+				return this.firstname+this.lastname;
+			}
+		})
+		.controller('MyCtrl', function($scope, realname, http, Data, User){
+			$scope.msg='你好';
+			$scope.realname=realname;
+			$scope.http=http;
+			$scope.data=Data;
+			Data.setMsg();
+			$scope.uname=User.getName();
+		})
+	</script>
+</body>
+</html>
+<!-- 
+AngularJS 提供很好的依赖注入机制。以下5个核心组件用来作为依赖注入：
+value
+factory
+service
+provider
+constant
+ -->

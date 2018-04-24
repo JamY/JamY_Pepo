@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="myApp">
+<!-- 1、uppercase，lowercase 大小写转换 -->
+{{ "lower cap string" | uppercase }}   // 结果：LOWER CAP STRING<br/>
+{{ "TANK is GOOD" | lowercase }}      // 结果：tank is good<br/>
+<!-- 2、date 格式化 -->
+{{1490161945000 | date:"yyyy-MM-dd HH:mm:ss"}} // 2017-03-22 13:52:25<br/>
+<!-- 3、number 格式化（保留小数） -->
+{{149016.1945000 | number:2}}<br/>
+<!-- 4、currency货币格式化 -->
+{{ 250 | currency }}            // 结果：$250.00<br/>
+{{ 250 | currency:"RMB ￥ " }}  // 结果：RMB ￥ 250.00<br/>
+
+<!-- // 查找name为iphone的行 -->
+{{ [{"age": 20,"id": 10,"name": "iphone"},
+{"age": 12,"id": 11,"name": "sunm xing"},
+{"age": 44,"id": 12,"name": "test abc"}
+] | filter:{'name':'iphone'} }}<br/>
+
+{{"1234567890" | limitTo :6}} // 从前面开始截取6位<br/>
+{{"1234567890" | limitTo:-4}} // 从后面开始截取4位<br/>
+
+<!--  // 根id降序排 -->
+{{ [{"age": 20,"id": 10,"name": "iphone"},
+{"age": 12,"id": 11,"name": "sunm xing"},
+{"age": 44,"id": 12,"name": "test abc"}
+] | orderBy:'id':true }}<br/>
+
+<!-- // 根据id升序排 -->
+{{ [{"age": 20,"id": 10,"name": "iphone"},
+{"age": 12,"id": 11,"name": "sunm xing"},
+{"age": 44,"id": 12,"name": "test abc"}
+] | orderBy:'id' }}<br/>
+
+姓名: {{ msg | reverse }}<br/>
+
+<script src="js/angular.min.js"></script>
+<script>
+	/*自定义过滤器*/
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.msg = "Runoob";
+});
+app.filter('reverse', function() { //可以注入依赖
+    return function(text) {
+        return text.split("").reverse().join("");
+    }
+});
+</script>
+</body>
+</html>
+<!-- 
+
+过滤器	描述
+currency	格式化数字为货币格式。
+filter	从数组项中选择一个子集。
+lowercase	格式化字符串为小写。
+orderBy	根据某个表达式排列数组。
+uppercase	格式化字符串为大写。
+ -->

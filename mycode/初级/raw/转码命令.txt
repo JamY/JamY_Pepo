@@ -1,0 +1,1 @@
+\我的文件\JAVA\00极客学院前端WEB开发\极客学院\初级\ffmpeg-20180322-ed0e0fe-win64-static\bin\ffmpeg -i 2.mp4 -acodec libvorbis 2.ogg

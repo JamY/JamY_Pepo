@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/foundation.min.css">
+</head>
+<body ng-app="app" ng-controller="MyCtrl">
+	<hello></hello>
+	<div att></div>
+	<div class="class"></div>
+	<div enter="delData()">I'm here</div>
+	<div>
+		<food apple orange banana>所有事物</food><br>
+		<food apple orange>所有事物</food>
+	</div>
+	<script type="text/javascript">
+		var app = angular.module("app", []);
+		app.directive("hello", function(){
+			return {
+				restrict: "E",
+				replace: true,//替换到我们自定义的directive的名称
+				template: "<div>Hello AngularJS</div>",
+				link:function(){
+					alert("我在这里1");
+				}
+			}
+		});
+		app.directive("att", function(){
+			return {
+				restrict: "A",//estrict 默认值为 EA, 即可以通过元素名和属性名来调用指令
+				template: "<div>Hello AngularJS</div>",
+				link:function(scope, element, attrs){
+					element.bind('mouseenter', function(){
+						element.addClass('alert-box');
+					});		
+				}
+			}
+		});
+		app.directive("class", function(){
+			return {
+				restrict: "C",
+				template: "<div><input ng-model='txt'></div><div>{{txt}}</div>",
+				link:function(scope, element){
+					scope.$watch('txt', function(newVal){
+						if(newVal === 'error'){
+							element.addClass('alert-box alert');
+						}
+					});
+				}
+			}
+		});
+
+		//directive和controller之间的会话
+		app.controller("MyCtrl", function($scope){
+			$scope.loadMoreData = function(){
+				console.log("正在加载数据..");
+			}
+			$scope.delData = function(){
+				console.log("正在删除数据..");
+			}
+		});
+		app.directive("enter", function(){
+			return function(scope, element, att){
+				element.bind("mouseenter", function(){
+					// scope.loadMoreData();
+					// scope.$apply("loadMoreData()");
+					scope.$apply(att.enter);
+				});
+			}
+		});
+
+		app.directive('food', function(){
+			return {
+				restrict: 'E',
+				scope: {},
+				controller: function($scope){
+					$scope.foods=[];
+					this.addApple=function(){
+						$scope.foods.push('apple');
+					}
+					this.addOrange=function(){
+						$scope.foods.push('orange');
+					}
+					this.addBanana=function(){
+						$scope.foods.push('banana');
+					}
+				},
+				link:function(scope, element, attrs){
+					element.bind('mouseenter', function(){
+						console.log(scope.foods);
+					})
+				}
+			}
+		});
+		app.directive('apple', function(){
+			return {
+				require: 'food',
+				link: function(scope, element, attrs, foodCtrl){
+					foodCtrl.addApple();
+				}
+			}
+		});
+		app.directive('orange', function(){
+			return {
+				require: 'food',
+				link: function(scope, element, attrs, foodCtrl){
+					foodCtrl.addOrange();
+				}
+			}
+		})
+		app.directive('banana', function(){
+			return {
+				require: 'food',
+				link: function(scope, element, attrs, foodCtrl){
+					foodCtrl.addBanana();
+				}
+			}
+		})
+		// E(元素)：<directiveName></directiveName>  
+		// A(属性)：<div directiveName='expression'></div>  
+		// C(类)： <div class='directiveName'></div>  
+		// M(注释)：<--directive:directiveName expression-->
+		
+		// function link(scope, iElement, iAttrs, controller) { ... }
+		// scope - 指令需要监听的作用域。
+		// iElement - instance element - 指令所在的元素。
+		// iAttrs - instance attributes - 实例属性
+		// controller - 控制器实例
+
+		// Scope提供$watch方法监视Model的变化。$scope.$watch('', function(newVal, oldVal){...})
+		// Scope提供$apply方法传播Model的变化。$scope.$apply(function(){...})
+		//$apply 如果我们需要在一个新的执行序列中运行代码时才真正需要用到它
+
+	// 	priority: 0, (数字)，可选参数，指明指令的优先级，若在单个DOM上有多个指令，则优先级高的先执行
+	//  template: '<div></div>', 
+	//  templateUrl: 'directive.html', 
+	//  terminal: true,（布尔型），可选参数，可以被设置为true或false，若设置为true，则优先级低于此指令的其他指令则无效，不会被调用(优先级相同的还是会执行)
+	//  replace: false, 
+	//  transclude: false, 
+	//  restrict: 'A', （字符串）可选参数，指明指令在DOM里面以什么形式被声明
+	//  scope: false, 
+	//  compile: function compile(tElement, tAttrs, transclude) { 
+	// 　　 return { 
+	// 　　　　 pre: function preLink(scope, iElement, iAttrs, controller) { ... }, 
+	// 　　　　 post: function postLink(scope, iElement, iAttrs, controller) { ... } 
+	// 　　 } 
+	//  }, 
+	//  link: function postLink(scope, iElement, iAttrs, controller) { ... } 		
+	</script>
+</body>
+</html>
