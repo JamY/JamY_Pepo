@@ -1,0 +1,39 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/searchbar/searchbar"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#775b79",
+    "navigationBarTitleText": "天气-小程序",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "天气",
+        "iconPath": "image/special-2.png",
+        "selectedIconPath": "image/special-1.png",
+        "selected":"ture"
+      },
+      {
+        "pagePath": "pages/searchbar/searchbar",
+        "text": "搜索",
+        "iconPath": "image/search-2.png",
+        "selectedIconPath": "image/search-1.png",
+        "selected": "false"
+      }
+    ],
+    "color": "#333",
+    "selectedColor": "#f7982a",
+    "backgroundColor": "#f6f6f6",
+    "borderStyle": "white"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  }
+}

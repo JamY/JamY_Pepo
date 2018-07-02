@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<h1>v-if 判断是否加载</h1>
+	<div id="app">
+		<div v-if="isLogin">你好：JSPang</div>
+		<div v-else>请登录后操作</div>
+
+		<li v-for="item in sortItems">
+			{{item}}
+		</li>
+		<li v-for="(student,index) in sortStudent">
+		    {{index}}：{{student.name}} - {{student.age}}
+		</li>
+
+		<span v-text="message"></span>
+		<span v-html="msgHtml"></span>
+
+		<span>本场比赛得分：{{count}}</span><br>
+		<input type="text" v-model="add" v-on:keyup.enter="onEnter">
+	</div>
+</body>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: "#app",
+		data: {
+			isLogin: false,
+
+			items: [20,23,18,65,32,19,54,56,41],
+			students: [
+			  	{name:'jspang',age:32},
+			 	{name:'Panda',age:30},
+			 	{name:'PanPaN',age:21},
+			  	{name:'King',age:45}
+			],
+
+			message: "hello world!",
+			msgHtml: "<h2>hello world!</h2>",
+
+			count: 0,
+			add: 1,
+		},
+		// 低版本中 data和computed里面不允许相同名称
+		computed: {
+			sortItems: function(){
+				return this.items.sort(sortNumber);
+			},
+			sortStudent:function(){
+			     return sortByKey(this.students,'age');
+			}
+		},
+		methods: {
+			onEnter: function(){
+				this.count = this.count + parseInt(this.add) //文本框的数字会默认转变成字符串
+			}
+		}
+	})
+	// arrayObject.sort(sortby) 方法用于对数组的元素进行排序。
+	// 若 a 小于 b，在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值。
+	// 若 a 等于 b，则返回 0。
+	// 若 a 大于 b，则返回一个大于 0 的值。
+	function sortNumber(a, b){
+			return a-b;
+	}
+	//数组对象方法排序:
+	function sortByKey(array,key){
+	    return array.sort(function(a,b){
+	      var x=a[key];
+	      var y=b[key];
+	      return ((x<y)?-1:((x>y)?1:0));
+	   });
+	}
+</script>
+</html>

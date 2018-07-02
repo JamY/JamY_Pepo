@@ -1,0 +1,8 @@
+<template name="today-tpl">
+  <view class="today ripple zoomInUp">
+    <view class="city">{{weather.city}}</view>
+    <view class="date">{{weather.date}}</view>
+    <view class="temp ripple {{list[0].open ? 'rubberBand':''}}"  bindtap="showThis" id="temperature">{{weather.temperature}}</view>
+    <view class="weather">{{weather.forecast[0].type}} | {{weather.ult}}</view>
+  </view>
+</template>

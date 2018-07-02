@@ -1,0 +1,8 @@
+<template name="forecast-tpl">
+  <view class="forecast-item ripple fadeInUp {{list[index+1].open ? 'bounceIn':''}}"
+  bindtap='showThis' id="forecast_{{index}}">
+    <view>{{item.date}}</view>
+    <view>{{item.type}}</view>
+    <view>{{item.temperature}}</view>
+  </view>
+</template>

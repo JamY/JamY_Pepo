@@ -1,0 +1,36 @@
+﻿<ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://WebXml.com.cn/">
+<string>广东 潮州</string>
+<string>潮州</string>
+<string>2361</string>
+<string>2018/03/06 18:14:27</string>
+<string>今日天气实况：气温：16℃；风向/风力：东南风 2级；湿度：72%</string>
+<string>紫外线强度：弱。空气质量：中。</string>
+<string>
+紫外线指数：弱，辐射较弱，涂擦SPF12-15、PA+护肤品。 健臻·血糖指数：不易波动，天气条件好，血糖不易波动，可适时进行户外锻炼。 感冒指数：较易发，温差较大，较易感冒，注意防护。 穿衣指数：较舒适，建议穿薄外套或牛仔裤等服装。 洗车指数：较适宜，无雨且风力较小，易保持清洁度。 空气污染指数：中，易感人群应适当减少室外活动。
+</string>
+<string>3月6日 多云</string>
+<string>13℃/23℃</string>
+<string>无持续风向小于3级</string>
+<string>1.gif</string>
+<string>1.gif</string>
+<string>3月7日 多云转小雨</string>
+<string>14℃/23℃</string>
+<string>无持续风向小于3级</string>
+<string>1.gif</string>
+<string>7.gif</string>
+<string>3月8日 小雨转多云</string>
+<string>9℃/15℃</string>
+<string>无持续风向小于3级</string>
+<string>7.gif</string>
+<string>1.gif</string>
+<string>3月9日 阴</string>
+<string>8℃/21℃</string>
+<string>无持续风向小于3级</string>
+<string>2.gif</string>
+<string>2.gif</string>
+<string>3月10日 阴</string>
+<string>8℃/22℃</string>
+<string>无持续风向小于3级</string>
+<string>2.gif</string>
+<string>2.gif</string>
+</ArrayOfString>

@@ -1,0 +1,6 @@
+<template name="detail-tpl">
+    <view class="detail-item ripple zoomInUp">
+        <view>{{item.key}}</view>
+        <span>{{item.value}}</span>
+    </view>
+</template>

@@ -1,0 +1,10 @@
+<template name="index-tpl">
+    <!-- <view class="index-name">{{idx}}-{{item.name}}：{{item.index}}</view> -->
+    <view class="index-item">
+      <image src="../img/{{idx}}.gif"></image>
+      <view class="index-name">{{item.key}}</view>
+      <view class="index-value">{{item.value}}</view>
+    </view>
+    <!-- <view class="index-name"></view> -->
+    <!--<view class="index-detail">{{item.details}}</view>-->
+</template>

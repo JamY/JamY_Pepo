@@ -1,0 +1,229 @@
+page {
+    height:100%;
+}
+.ripple {
+	animation-duration: 1s;
+	animation-fill-mode: both; 
+}
+.ripple.infinite {
+	animation-iteration-count: infinite;
+}
+
+.ripple.hinge {
+	animation-duration: 2s;
+}
+
+.ripple.flipOutX,
+.ripple.flipOutY,
+.ripple.bounceIn,
+.ripple.bounceOut {
+	animation-duration: .75s;
+}
+
+.main-container {
+    height:100%;
+    /* color: #FFFFFF;   */
+    text-align: center;
+    /* padding-top:10px;  */
+    /* position: relative; */
+    background-image: url('http://www.wallcoo.com/paint/space_1600/wallpapers/1024x768/wallcoo.com_Space_Art_wc.jpg');
+    background-size: 1500rpx 560rpx;background-repeat: no-repeat;
+}
+
+.today {
+    border:1px #aaadaa solid; width:90%;height:30%; margin-left:5%; padding:10rpx 0rpx; border-radius:10rpx; background:rgba(255, 255, 255, 0.1);color: #FFFFFF;
+}
+
+.city, .date {
+    color:#aaadaa; font-weight: bold;
+}
+.temp {
+    font-size: 120rpx; padding:20rpx;
+}
+
+.weather {
+    font-size:30rpx;color:#ddd; font-weight: lighter;
+}
+
+
+/*
+
+.index-detail {
+    border-bottom:1px #999 solid; padding-bottom:8rpx; font-size:18rpx;
+}
+*/
+.detail {
+    width:101%; margin-top:60rpx; /*遮蔽多余的竖线*/
+    display: flex; flex-direction: row;color: #FFFFFF;
+    /* float:left;  */
+}
+
+.detail-item {
+    display: flex; flex-direction: column;justify-content: space-between;
+    width:33%;height:100rpx; margin-left:1%; border-right:1px #bbb solid; 
+    /* border-radius: 5px;  */
+    /* box-shadow: 5px 5px 5px #888888; 阴影 */
+    /* background: rgba(255 ,255 ,255 ,0.1); 背景透明度*/
+}
+.detail-item view {
+    font-size:26rpx; 
+    /* line-height:50rpx; 行高*/
+} 
+.detail-item span {
+  font-size:40rpx; 
+}
+.forecast {
+  width:100%; margin-top:60rpx;color: #7D7E7E;
+  /* display: flex; flex-direction: column; */
+}
+.forecast-item {
+  width: 94%; height: 150rpx; 
+  border-bottom: 1px #E8E0E0 solid;
+  margin-left:1%;
+  display: flex; flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.forecast-underline {
+  width: 100%; height: 70rpx;padding-top: 4%;
+  font-size: 25rpx;
+  border-bottom: 20rpx #E8E8E8 solid;
+}
+.index-underline {
+  width: 100%; height: 50rpx;background-color: #288EE6;
+  font-size: 25rpx;padding-top: 2%;
+}
+.index-content {
+  width:100%;height:500rpx;border: 1px #71A6CE solid;
+  background-color: #1A6AAE; padding-top: 8%;
+  /* text-align: left; 
+  padding:40rpx 10rpx;  */
+  display: flex;flex-flow: wrap;
+  justify-content: space-around;
+  /* align-items:  */
+}
+.index-item {
+  width:26%;height:160rpx;
+  border: 1px #C6D7E5 solid;background-color: #16466E;
+  padding: 2% 2%; 
+}
+.index-item image {
+  width:50rpx;height: 50rpx;
+}
+.index-name,.index-value {
+  color: white;
+}
+.index-name {
+  font-size: 25rpx;
+}
+.index-value {
+  font-size: 20rpx;
+}
+
+@keyframes zoomInUp {
+  from {
+    opacity: 0;
+    transform: scale3d(.1, .1, .1) translate3d(0, 2000rpx, 0);
+    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+  60% {
+    opacity: 1;
+    transform: scale3d(.475, .475, .475) translate3d(0, -120rpx, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  }
+}
+
+.zoomInUp {
+  animation-name: zoomInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, .95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.rubberBand {
+  animation-name: rubberBand;
+}
+
+.ripple.bounceIn {
+	animation-duration: .75s;
+}
+@keyframes bounceIn {
+  from, 20%, 40%, 60%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(.9, .9, .9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(.97, .97, .97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+.bounceIn {
+  animation-name: bounceIn;
+}
