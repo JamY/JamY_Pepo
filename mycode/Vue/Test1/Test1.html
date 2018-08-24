@@ -23,6 +23,10 @@
 
 		<span>本场比赛得分：{{count}}</span><br>
 		<input type="text" v-model="add" v-on:keyup.enter="onEnter">
+
+		<div v-pre>{{message}}直接渲染</div>
+		<div v-cloak>{{message}}整个页面渲染完成后，才显示</div>
+		<div v-once>{{message}}渲染一次不再改变</div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -77,3 +81,4 @@
 	}
 </script>
 </html>
+<!-- v-pre v-cloak v-once -->

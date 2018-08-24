@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var a = null;
+		window.alert(typeof a);
+		// a instanceof b;
+		//  闭包
+		var count = 10;
+		function add(){
+			var count = 0;
+			return function(){
+				count++
+				console.log(count);
+			}
+		}
+		var a = add();
+		a();
+		a();
+		// 跨域
+		// res.writeHead(200, {
+
+		// })
+		//prototype原型链继承
+		// function teacher(name){
+		// 	this.name = name;
+		// }
+		
+		// teacher.prototype.sayName = function(){
+		// 	console.log("name is " + this.name);
+		// }
+		// var teacher1 = new teacher("xioaming");
+		// teacher1.sayName();
+		// function student(name){
+		// 	this.name = name;
+		// }
+		// student.prototype = new teacher();		
+		// var student1 = new student("xiaolan");
+		// student1.sayName();
+
+		// call()/apply()方法
+		// function teacher(name, age){
+		// 	this.name = name;
+		// 	this.age = age;
+		// 	this.sayhi = function(){
+		// 		console.log("name: " + name + " age: " + age);
+		// 	}
+		// }
+		// function student(){
+		// 	var args = arguments;// arguments接收全部的参数
+		// 	teacher.apply(this, arguments);
+		// 	// teacher.call(this, args[0], args[1]);
+		// }
+		// var teracher1 = new teacher("xiaoming", 21);
+		// teracher1.sayhi();
+		// var student1 = new student("xiaolan", 34);
+		// student1.sayhi();
+
+		//prototype和call/apply()混合
+		// function teacher(name, age){
+		// 	this.name = name;
+		// 	this.age = age;
+		// }
+		// teacher.prototype.sayName = function(){
+		// 	console.log("name: " + this.name);
+		// }
+		// teacher.prototype.sayAge = function(){
+		// 	console.log("age: " + this.age);
+		// }
+		// function student(){
+		// 	var args = arguments;// arguments接收全部的参数
+		// 	teacher.apply(this, arguments);
+		// 	// teacher.call(this, args[0], args[1]);
+		// }
+		// student.prototype = new teacher();
+		// var student1 = new student("xiaolan", 34);
+		// student1.sayName();
+		// student1.sayAge();
+
+		// 对象冒充
+		function teacher(name, age){
+			this.name = name;
+			this.age =age;
+			this.sayhi = function(){
+				console.log("name: " + name + " age: " + age);
+			} 
+		}
+		function student(name, age){
+			this.student = teacher;//将teacher类的构造函数赋值给this.student
+			this.student(name, age);//冒充对象实现继承
+			delete this.student;//移除对this.student的引用
+		}
+		var student1 = new student("xioaming", 12);
+		student1.sayhi();
+		var student2 = new student("xioalan", 72);
+		student2.sayhi();
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#load{
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -50px;
+		margin-right: -50px;
+		transition: all 0.1s ease-out;
+		/*transform: translate();*/
+		/*transform:scale(2); */
+	}
+</style>
+<script>
+	window.onload=function(){
+		var e=document.getElementsByTagName("canvas")[0];
+		var load=document.getElementById("load");
+		var ctx=e.getContext("2d");
+		var reg=0;
+		ctx.beginPath();
+		ctx.arc(50,50,20,0,2*Math.PI);
+		ctx.strokeStyle="rgba(000,000,000,0.3)";
+		ctx.lineWidth=3;
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.arc(50,50,20,0,0.5*Math.PI);
+		ctx.strokeStyle="rgba(000,000,000,0.7)";
+		ctx.stroke();
+		function rotate(){
+			load.style.transform="rotate("+(reg++)+"deg)";
+		}
+		setInterval(rotate,10);
+		load.onclick=function(){
+			load.style.transform="rotate(90deg)";
+			console.log("ok");
+		}
+	}
+</script>
+<body>
+	<div id="load">
+		<canvas></canvas>
+	</div>
+</body>
+</html>

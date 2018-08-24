@@ -14,6 +14,8 @@
 
 截图如下：
 
-![微信小程序-天气 首页](http://zsl131.github.io/wx-la/weather/01.png "微信小程序-天气 首页")
+![微信小程序-天气 首页](https://github.com/JamY/JamY_Pepo/tree/master/myproject/MyApp/image-folder/2018-08-24_172257.jpg "微信小程序-天气 首页")
 
-![微信小程序-天气 详情页](https://zsl131.github.io/wx-la/weather/02.png "微信小程序-天气 详情页")
+![微信小程序-天气 详情页](https://github.com/JamY/JamY_Pepo/tree/master/myproject/MyApp/image-folder/2018-08-24_172339.jpg "微信小程序-天气 详情页")
+
+![微信小程序-天气 搜索页](https://github.com/JamY/JamY_Pepo/tree/master/myproject/MyApp/image-folder/2018-08-24_172355.jpg "微信小程序-天气 搜索页")
